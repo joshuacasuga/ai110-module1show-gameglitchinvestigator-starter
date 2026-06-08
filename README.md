@@ -23,23 +23,30 @@ It wrote the code, ran away, and now the game is unplayable.
    - Run `pytest` in your terminal.
    - Keep fixing until all tests pass!
 
-## 📝 Document Your Experience
+## Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+Purpose. The game is a number guessing game built with Streamlit. The user guesses a number in a range. The game gives a hint after each guess and tracks the score.
 
-## 📸 Demo Walkthrough
+Bugs found.
+1. The hints were backwards. A guess that was too high told the user to go higher.
+2. New Game did not work after a game ended. The secret and attempts reset but the game stayed stuck in the won or lost state.
+3. The secret was sometimes compared as a string, which broke the hints on some turns.
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+Fixes applied.
+1. Rewrote check_guess to compare numbers and return the correct hint direction.
+2. Made New Game reset the full state, including status, score, and history.
+3. Moved the game logic into logic_utils.py and added pytest tests.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+## Demo Walkthrough
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+Sample game on Normal difficulty. Range is 1 to 100. The secret for this run is 42.
+
+1. The app loads. The score is 0.
+2. User guesses 50. The game says Too High, Go Lower. The score is now 5.
+3. User guesses 30. The game says Too Low, Go Higher. The score is now 0.
+4. User guesses 42. The game says Correct. It shows You won. The final score is 50.
+5. The game stops taking guesses and asks the user to start a new game.
+6. User clicks New Game. The secret, attempts, score, and history reset. The user can guess again right away.
 
 ## 🧪 Test Results
 
